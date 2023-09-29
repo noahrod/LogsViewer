@@ -45,7 +45,7 @@ public class IndexContoller {
 					indexHTML.append("<br><a href=\"/LogsViewer/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> Available Logs for <b>"+folder+"</b>:<br>");
 					indexHTML.append("<ul>");
 					for(int a=0; a<contentsSelectedFolder.length; a++) {
-						if(contentsSelectedFolder[a].contains(".log")) {
+						if(contentsSelectedFolder[a].contains(".log") && !contentsSelectedFolder[a].contains("trace")) {
 							indexHTML.append("<li class=\"file\"><i class=\"bi bi-file-earmark-fill\"></i><a href=\"/LogsViewer/?file="+folder+"/logs/"+contentsSelectedFolder[a]+"\"> " + contentsSelectedFolder[a] + "</a></li>");
 						}
 				    }

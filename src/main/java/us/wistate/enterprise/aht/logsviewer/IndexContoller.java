@@ -30,8 +30,10 @@ public class IndexContoller {
 			indexHTML.append("<br>Available Logs:<br>");
 			indexHTML.append("<ul>");
 			for(int i=0; i<contents.length; i++) {
-				indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\"/?folder="+contents[i]+"\"> " + contents[i] + "</a></li>");
-		    }
+				if(contents[i].charAt(0) != '.'){
+					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\"/?folder="+contents[i]+"\"> " + contents[i] + "</a></li>");
+				}
+			}
 			indexHTML.append("</ul>");
 		}else {
 			if((file =="" || file == null)&&(folder != "") ) {

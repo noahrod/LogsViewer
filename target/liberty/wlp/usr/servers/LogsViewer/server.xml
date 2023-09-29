@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <featureManager>
+        <feature>servlet-6.0</feature>
+        <feature>springBoot-3.0</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080"
+                  httpsPort="9443" />
+
+    <springBootApplication location="LogsViewer-0.0.1-SNAPSHOT.jar">
+        <applicationArgument>--server.servlet.context-path=/LogsViewer/</applicationArgument>
+    </springBootApplication>
+
+</server>

@@ -1,0 +1,5 @@
+<webappbnd:WebAppBinding
+xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+xmlns:webappbnd="webappbnd.xmi"
+virtualHostName="default_host">
+</webappbnd:WebAppBinding>

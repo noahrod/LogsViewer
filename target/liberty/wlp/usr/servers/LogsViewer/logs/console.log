@@ -1,0 +1,21 @@
+Launching LogsViewer (Open Liberty 23.0.0.9/wlp-1.0.81.cl230920230904-1158) on Eclipse OpenJ9 VM, version 17.0.8.1+1 (en_US)
+[AUDIT   ] CWWKE0001I: The server LogsViewer has been launched.
+[AUDIT   ] CWWKZ0058I: Monitoring dropins for applications.
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.4)
+2023-09-28T20:35:39.073-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : Starting LogsViewerApplication using Java 17.0.8.1 with PID 29617 (/Users/noerodriguez/LogsViewer-1/target/liberty/wlp/usr/servers/LogsViewer/workarea/spring/spring.thin.apps/LogsViewer-0.0.1-SNAPSHOT.spring started by noerodriguez in /Users/noerodriguez/LogsViewer-1/target/liberty/wlp/usr/servers/LogsViewer)
+2023-09-28T20:35:39.074-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : No active profile set, falling back to 1 default profile: "default"
+[AUDIT   ] CWWKT0016I: Web application available (default_host): http://noes-air.lan:9080/LogsViewer/
+2023-09-28T20:35:39.699-05:00  INFO 29617 --- [cutor-thread-13] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 604 ms
+2023-09-28T20:35:39.773-05:00  INFO 29617 --- [ecutor-thread-4] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-09-28T20:35:39.854-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : Started LogsViewerApplication in 0.924 seconds (process running for 1.428)
+[AUDIT   ] CWWKZ0001I: Application LogsViewer-0.0.1-SNAPSHOT started in 1.078 seconds.
+[AUDIT   ] CWWKF0012I: The server installed the following features: [servlet-6.0, springBoot-3.0].
+[AUDIT   ] CWWKF0011I: The LogsViewer server is ready to run a smarter planet. The LogsViewer server started in 1.396 seconds.
+2023-09-28T20:36:10.876-05:00  INFO 29617 --- [ecutor-thread-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-28T20:36:10.877-05:00  INFO 29617 --- [ecutor-thread-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

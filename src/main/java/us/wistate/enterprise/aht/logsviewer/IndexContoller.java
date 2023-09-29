@@ -3,6 +3,10 @@ package us.wistate.enterprise.aht.logsviewer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import jakarta.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +25,9 @@ public class IndexContoller {
 	@Value("${spring.logsDirectoryPath}")
 	private String logsDirectoryPath;
 	
+	@Autowired
+	private ServletContext context;
+
 	@GetMapping("/")
 	public String getIndex(@RequestParam(required = false) String file,@RequestParam(required = false) String folder, Model model) {
 		StringBuilder indexHTML = new StringBuilder("");
@@ -31,7 +38,7 @@ public class IndexContoller {
 			indexHTML.append("<ul>");
 			for(int i=0; i<contents.length; i++) {
 				if(contents[i].charAt(0) != '.'){
-					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\"/LogsViewer/?folder="+contents[i]+"\"> " + contents[i] + "</a></li>");
+					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\""+context.getContextPath()+"/?folder="+contents[i]+"\"> " + contents[i] + "</a></li>");
 				}
 			}
 			indexHTML.append("</ul>");
@@ -42,23 +49,23 @@ public class IndexContoller {
 				if(Arrays.asList(contents).contains(folder)) {
 					File directoryPathSelectedFolder= new File(logsDirectoryPath+"/"+folder+"/logs");
 					String contentsSelectedFolder[] = directoryPathSelectedFolder.list();
-					indexHTML.append("<br><a href=\"/LogsViewer/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> Available Logs for <b>"+folder+"</b>:<br>");
+					indexHTML.append("<br><a href=\""+context.getContextPath()+"/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> Available Logs for <b>"+folder+"</b>:<br>");
 					indexHTML.append("<ul>");
 					for(int a=0; a<contentsSelectedFolder.length; a++) {
 						if(contentsSelectedFolder[a].contains(".log") && !contentsSelectedFolder[a].contains("trace")) {
-							indexHTML.append("<li class=\"file\"><i class=\"bi bi-file-earmark-fill\"></i><a href=\"/LogsViewer/?file="+folder+"/logs/"+contentsSelectedFolder[a]+"\"> " + contentsSelectedFolder[a] + "</a></li>");
+							indexHTML.append("<li class=\"file\"><i class=\"bi bi-file-earmark-fill\"></i><a href=\""+context.getContextPath()+"/?file="+folder+"/logs/"+contentsSelectedFolder[a]+"\"> " + contentsSelectedFolder[a] + "</a></li>");
 						}
 				    }
 					indexHTML.append("</ul>");
 				}else {
-					indexHTML.append("<br><a href=\"/LogsViewer/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> <b>This folder does not exist.</b>");
+					indexHTML.append("<br><a href=\""+context.getContextPath()+"/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> <b>This folder does not exist.</b>");
 				}
 			}
 			if((folder =="" || folder == null)&&(file != "") ) {
 				File f = new File(logsDirectoryPath+"/"+file);
 				if(f.exists() && !f.isDirectory()) { 
 					try {
-						indexHTML.append("<br><a href=\"/LogsViewer/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
+						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 						indexHTML.append("File: <b>"+file.split("/")[2]+"</b><br>");
 						FileInputStream fstream = new FileInputStream(logsDirectoryPath+"/"+file);
 						DataInputStream in = new DataInputStream(fstream);
@@ -70,6 +77,7 @@ public class IndexContoller {
 								indexHTML.append(strLine+"\n");
 							}
 							indexHTML.append("</code></pre>");
+							indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -85,7 +93,7 @@ public class IndexContoller {
 						e.printStackTrace();
 					}
 				}else {
-					indexHTML.append("<br><a href=\"/LogsViewer/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> <b>This file does not exist.</b>");
+					indexHTML.append("<br><a href=\""+context.getContextPath()+"/\"><i class=\"bi bi-arrow-left-circle-fill\"></i></a> <b>This file does not exist.</b>");
 				}
 				
 				

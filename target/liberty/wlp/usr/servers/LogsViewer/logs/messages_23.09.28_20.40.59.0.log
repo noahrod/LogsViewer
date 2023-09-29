@@ -1,0 +1,54 @@
+********************************************************************************
+product = Open Liberty 23.0.0.9 (wlp-1.0.81.cl230920230904-1158)
+wlp.install.dir = /Users/noerodriguez/LogsViewer-1/target/liberty/wlp/
+java.home = /Library/Java/JavaVirtualMachines/ibm-semeru-open-17.jdk/Contents/Home
+java.version = 17.0.8.1
+java.runtime = IBM Semeru Runtime Open Edition (17.0.8.1+1)
+os = Mac OS X (13.5.2; aarch64) (en_US)
+process = 29617@noes-air.lan
+Classpath = /Users/noerodriguez/LogsViewer-1/target/liberty/wlp/bin/tools/ws-server.jar
+Java Library path = /Library/Java/JavaVirtualMachines/ibm-semeru-open-17.jdk/Contents/Home/lib/default:/Library/Java/JavaVirtualMachines/ibm-semeru-open-17.jdk/Contents/Home/lib:/usr/lib
+********************************************************************************
+[9/28/23, 20:35:38:554 CDT] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0001I: The server LogsViewer has been launched.
+[9/28/23, 20:35:38:679 CDT] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           I CWWKE0002I: The kernel started after 0.211 seconds
+[9/28/23, 20:35:38:680 CDT] 00000031 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0007I: Feature update started.
+[9/28/23, 20:35:38:719 CDT] 00000027 com.ibm.ws.app.manager.internal.monitor.DropinMonitor        A CWWKZ0058I: Monitoring dropins for applications.
+[9/28/23, 20:35:38:778 CDT] 00000037 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Starting application LogsViewer-0.0.1-SNAPSHOT.
+[9/28/23, 20:35:38:823 CDT] 00000037 com.ibm.ws.session.WASSessionCore                            I SESN8501I: The session manager did not find a persistent storage location; HttpSession objects will be stored in the local application server's memory.
+[9/28/23, 20:35:39:033 CDT] 0000003b SystemOut                                                    O   .   ____          _            __ _ _
+[9/28/23, 20:35:39:034 CDT] 0000003b SystemOut                                                    O  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[9/28/23, 20:35:39:034 CDT] 0000003b SystemOut                                                    O ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[9/28/23, 20:35:39:034 CDT] 0000003b SystemOut                                                    O  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[9/28/23, 20:35:39:034 CDT] 0000003b SystemOut                                                    O   '  |____| .__|_| |_|_| |_\__, | / / / /
+[9/28/23, 20:35:39:034 CDT] 0000003b SystemOut                                                    O  =========|_|==============|___/=/_/_/_/
+[9/28/23, 20:35:39:035 CDT] 0000003b SystemOut                                                    O  :: Spring Boot ::                (v3.1.4)
+[9/28/23, 20:35:39:074 CDT] 0000003b SystemOut                                                    O 2023-09-28T20:35:39.073-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : Starting LogsViewerApplication using Java 17.0.8.1 with PID 29617 (/Users/noerodriguez/LogsViewer-1/target/liberty/wlp/usr/servers/LogsViewer/workarea/spring/spring.thin.apps/LogsViewer-0.0.1-SNAPSHOT.spring started by noerodriguez in /Users/noerodriguez/LogsViewer-1/target/liberty/wlp/usr/servers/LogsViewer)
+[9/28/23, 20:35:39:074 CDT] 0000003b SystemOut                                                    O 2023-09-28T20:35:39.074-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : No active profile set, falling back to 1 default profile: "default"
+[9/28/23, 20:35:39:583 CDT] 0000003b com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Loading Web Module: 0-0.
+[9/28/23, 20:35:39:584 CDT] 0000003b com.ibm.ws.webcontainer                                      I SRVE0250I: Web Module 0-0 has been bound to default_host.
+[9/28/23, 20:35:39:584 CDT] 0000003b com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Web application available (default_host): http://noes-air.lan:9080/LogsViewer/
+[9/28/23, 20:35:39:655 CDT] 00000048 com.ibm.ws.session.WASSessionCore                            I SESN0176I: A new session context will be created for application key default_host/LogsViewer
+[9/28/23, 20:35:39:658 CDT] 00000048 com.ibm.ws.util                                              I SESN0172I: The session manager is using the Java default SecureRandom implementation for session ID generation.
+[9/28/23, 20:35:39:698 CDT] 00000048 com.ibm.ws.webcontainer.webapp                               I SRVE0292I: Servlet Message - [0-0]:.Initializing Spring embedded WebApplicationContext
+[9/28/23, 20:35:39:699 CDT] 00000048 SystemOut                                                    O 2023-09-28T20:35:39.699-05:00  INFO 29617 --- [cutor-thread-13] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 604 ms
+[9/28/23, 20:35:39:773 CDT] 0000003b SystemOut                                                    O 2023-09-28T20:35:39.773-05:00  INFO 29617 --- [ecutor-thread-4] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+[9/28/23, 20:35:39:854 CDT] 0000003b SystemOut                                                    O 2023-09-28T20:35:39.854-05:00  INFO 29617 --- [ecutor-thread-4] u.w.e.a.l.LogsViewerApplication          : Started LogsViewerApplication in 0.924 seconds (process running for 1.428)
+[9/28/23, 20:35:39:856 CDT] 00000037 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0001I: Application LogsViewer-0.0.1-SNAPSHOT started in 1.078 seconds.
+[9/28/23, 20:35:39:860 CDT] 00000031 com.ibm.ws.tcpchannel.internal.TCPPort                       I CWWKO0219I: TCP Channel defaultHttpEndpoint has been started and is now listening for requests on host *  (IPv6) port 9080.
+[9/28/23, 20:35:39:863 CDT] 00000031 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0012I: The server installed the following features: [servlet-6.0, springBoot-3.0].
+[9/28/23, 20:35:39:863 CDT] 00000031 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0008I: Feature update completed in 1.185 seconds.
+[9/28/23, 20:35:39:863 CDT] 00000031 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0011I: The LogsViewer server is ready to run a smarter planet. The LogsViewer server started in 1.396 seconds.
+[9/28/23, 20:35:39:887 CDT] 00000045 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: A configuration file for a web server plugin was automatically generated for this server at /Users/noerodriguez/LogsViewer-1/target/liberty/wlp/usr/servers/LogsViewer/logs/state/plugin-cfg.xml.
+[9/28/23, 20:36:10:875 CDT] 00000031 com.ibm.ws.webcontainer.webapp                               I SRVE0292I: Servlet Message - [0-0]:.Initializing Spring DispatcherServlet 'dispatcherServlet'
+[9/28/23, 20:36:10:876 CDT] 00000031 SystemOut                                                    O 2023-09-28T20:36:10.876-05:00  INFO 29617 --- [ecutor-thread-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+[9/28/23, 20:36:10:877 CDT] 00000031 SystemOut                                                    O 2023-09-28T20:36:10.877-05:00  INFO 29617 --- [ecutor-thread-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+[9/28/23, 20:36:10:877 CDT] 00000031 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [LogsViewer-0.0.1-SNAPSHOT] [/LogsViewer] [dispatcherServlet]: Initialization successful.
+[9/28/23, 20:40:51:773 CDT] 00000021 com.ibm.ws.kernel.launch.internal.ServerCommandListener      A CWWKE0055I: Server shutdown requested on Thursday, September 28, 2023 at 8:40 PM. The server LogsViewer is shutting down.
+[9/28/23, 20:40:51:778 CDT] 0000004d com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  A CWWKE1100I: Waiting for up to 30 seconds for the server to quiesce.
+[9/28/23, 20:40:51:781 CDT] 00000048 com.ibm.ws.tcpchannel.internal.TCPChannel                    I CWWKO0220I: TCP Channel defaultHttpEndpoint has stopped listening for requests on host *  (IPv6) port 9080.
+[9/28/23, 20:40:51:782 CDT] 00000048 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Web application removed (default_host): http://noes-air.lan:9080/LogsViewer/
+[9/28/23, 20:40:52:784 CDT] 0000004d com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  I CWWKE1101I: Server quiesce complete.
+[9/28/23, 20:40:52:808 CDT] 00000042 com.ibm.ws.webcontainer.webapp                               I SRVE0292I: Servlet Message - [0-0]:.Destroying Spring FrameworkServlet 'dispatcherServlet'
+[9/28/23, 20:40:52:808 CDT] 00000042 com.ibm.ws.webcontainer.servlet                              I SRVE0253I: [LogsViewer-0.0.1-SNAPSHOT] [/LogsViewer] [dispatcherServlet]: Destroy successful.
+[9/28/23, 20:40:52:822 CDT] 00000042 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: The application LogsViewer-0.0.1-SNAPSHOT has stopped successfully.
+[9/28/23, 20:40:52:954 CDT] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0036I: The server LogsViewer stopped after 5 minutes, 14.494 seconds.

@@ -2,9 +2,9 @@ package us.wistate.enterprise.aht.logsviewer;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import jakarta.servlet.ServletContext;
+
+import us.wistate.enterprise.aht.Tail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
 
 @Controller
 public class IndexContoller {
@@ -29,7 +31,7 @@ public class IndexContoller {
 	private ServletContext context;
 
 	@GetMapping("/")
-	public String getIndex(@RequestParam(required = false) String file,@RequestParam(required = false) String folder, Model model) {
+	public String getIndex(@RequestParam(required = false) String file,@RequestParam(required = false) String folder,@RequestParam(required = false) String invertBlock, Model model) {
 		StringBuilder indexHTML = new StringBuilder("");
 		if((folder =="" || folder == null) && (file =="" || file == null)) {
 			File directoryPath= new File(logsDirectoryPath);
@@ -66,29 +68,26 @@ public class IndexContoller {
 				if(f.exists() && !f.isDirectory()) { 
 					try {
 						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
-						indexHTML.append("File: <b>"+file.split("/")[2]+"</b><br>");
-						FileInputStream fstream = new FileInputStream(logsDirectoryPath+"/"+file);
-						DataInputStream in = new DataInputStream(fstream);
-						BufferedReader br = new BufferedReader(new InputStreamReader(in));
-						String strLine;
-						try {
-							indexHTML.append("<pre><code class=\"auto\">");
-							while ((strLine = br.readLine()) != null)   {
-								indexHTML.append(strLine+"\n");
-							}
-							indexHTML.append("</code></pre>");
-							indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						if(invertBlock==null){
+							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+file+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+						}else{
+							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+file+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}
-						try {
-							in.close();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						Tail tailFile = new Tail();
+						
+						List<String> last100lines = tailFile.readLines(logsDirectoryPath+"/"+file,100);
+						
+						if(invertBlock!=null){
+							Collections.reverse(last100lines);
 						}
-					} catch (FileNotFoundException e) {
+						
+						indexHTML.append("<pre><code id=\"fileContent\" class=\"auto\">");
+						for (String strLine : last100lines) {
+							indexHTML.append(strLine+"\n");
+						}
+						indexHTML.append("</code></pre>");
+						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

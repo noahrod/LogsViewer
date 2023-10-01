@@ -37,16 +37,20 @@ public class IndexContoller {
 		StringBuilder indexHTML = new StringBuilder("");
 		if((folder =="" || folder == null) && (file =="" || file == null)) {
 			File directoryPath= new File(logsDirectoryPath);
-			String contents[] = directoryPath.list();
-			indexHTML.append("<br>Available Logs:<br>");
-			indexHTML.append("<ul>");
-			for(int i=0; i<contents.length; i++) {
-				if(contents[i].charAt(0) != '.'){
-					String encodedFolder = Base64.getEncoder().encodeToString((contents[i]).getBytes());
-					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"> " + contents[i] + "</a></li>");
+			if(directoryPath.exists() && directoryPath.isDirectory()) {
+				String contents[] = directoryPath.list();
+				indexHTML.append("<br>Available Logs:<br>");
+				indexHTML.append("<ul>");
+				for(int i=0; i<contents.length; i++) {
+					if(contents[i].charAt(0) != '.'){
+						String encodedFolder = Base64.getEncoder().encodeToString((contents[i]).getBytes());
+						indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"> " + contents[i] + "</a></li>");
+					}
 				}
+				indexHTML.append("</ul>");
+			}else{
+				indexHTML.append("The path defined in the properties file does not exist or the current user can not access it or the file is not a directory.");
 			}
-			indexHTML.append("</ul>");
 		}else {
 			if((file =="" || file == null)&&(folder != "") ) {
 				folder = new String(Base64.getDecoder().decode(folder), StandardCharsets.UTF_8);

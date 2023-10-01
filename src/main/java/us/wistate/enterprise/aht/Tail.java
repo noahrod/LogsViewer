@@ -13,7 +13,7 @@ import java.util.List;
 import static java.nio.file.StandardOpenOption.READ;
 
 public class Tail {
-    private static final int DEFAULT_BUFFER_SIZE = 512;
+    private static final int DEFAULT_BUFFER_SIZE = 256;
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static final char NEW_LINE = 10;
 

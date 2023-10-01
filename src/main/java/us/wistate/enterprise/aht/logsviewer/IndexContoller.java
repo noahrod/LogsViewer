@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 import java.util.Base64;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class IndexContoller {
@@ -85,9 +87,8 @@ public class IndexContoller {
 						}else{
 							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}
-						Tail tailFile = new Tail();
-						
-						List<String> last100lines = tailFile.readLines(logsDirectoryPath+"/"+file,100);
+						Path path = Paths.get(logsDirectoryPath+"/"+file);
+						List<String> last100lines = Tail.tailFile(path,100);
 						
 						if(invertBlock!=null){
 							Collections.reverse(last100lines);

@@ -18,9 +18,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
+import java.util.Base64;
 
 @Controller
 public class IndexContoller {
@@ -40,12 +42,14 @@ public class IndexContoller {
 			indexHTML.append("<ul>");
 			for(int i=0; i<contents.length; i++) {
 				if(contents[i].charAt(0) != '.'){
-					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\""+context.getContextPath()+"/?folder="+contents[i]+"\"> " + contents[i] + "</a></li>");
+					String encodedFolder = Base64.getEncoder().encodeToString((contents[i]).getBytes());
+					indexHTML.append("<li class=\"folder\"><i class=\"bi bi-folder-fill\"></i><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"> " + contents[i] + "</a></li>");
 				}
 			}
 			indexHTML.append("</ul>");
 		}else {
 			if((file =="" || file == null)&&(folder != "") ) {
+				folder = new String(Base64.getDecoder().decode(folder), StandardCharsets.UTF_8);
 				File directoryPath= new File(logsDirectoryPath);
 				String contents[] = directoryPath.list();
 				if(Arrays.asList(contents).contains(folder)) {
@@ -55,7 +59,8 @@ public class IndexContoller {
 					indexHTML.append("<ul>");
 					for(int a=0; a<contentsSelectedFolder.length; a++) {
 						if(contentsSelectedFolder[a].contains(".log") && !contentsSelectedFolder[a].contains("trace")) {
-							indexHTML.append("<li class=\"file\"><i class=\"bi bi-file-earmark-fill\"></i><a href=\""+context.getContextPath()+"/?file="+folder+"/logs/"+contentsSelectedFolder[a]+"\"> " + contentsSelectedFolder[a] + "</a></li>");
+							String encodedFile = Base64.getEncoder().encodeToString((folder+"/logs/"+contentsSelectedFolder[a]).getBytes());
+							indexHTML.append("<li class=\"file\"><i class=\"bi bi-file-earmark-fill\"></i><a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"> " + contentsSelectedFolder[a] + "</a></li>");
 						}
 				    }
 					indexHTML.append("</ul>");
@@ -64,14 +69,17 @@ public class IndexContoller {
 				}
 			}
 			if((folder =="" || folder == null)&&(file != "") ) {
+				file = new String(Base64.getDecoder().decode(file), StandardCharsets.UTF_8);
 				File f = new File(logsDirectoryPath+"/"+file);
 				if(f.exists() && !f.isDirectory()) { 
 					try {
-						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
+						String encodedFolder = Base64.getEncoder().encodeToString((file.split("/")[0]).getBytes());
+						String encodedFile = Base64.getEncoder().encodeToString((file).getBytes());
+						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 						if(invertBlock==null){
-							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+file+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}else{
-							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+file+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}
 						Tail tailFile = new Tail();
 						
@@ -86,7 +94,7 @@ public class IndexContoller {
 							indexHTML.append(strLine+"\n");
 						}
 						indexHTML.append("</code></pre>");
-						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+file.split("/")[0]+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
+						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

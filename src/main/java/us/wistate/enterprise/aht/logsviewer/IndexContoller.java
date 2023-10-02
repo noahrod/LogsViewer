@@ -11,13 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -83,12 +78,12 @@ public class IndexContoller {
 						String encodedFile = Base64.getEncoder().encodeToString((file).getBytes());
 						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 						if(invertBlock==null){
-							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}else{
-							indexHTML.append("File: <b>"+file+"</b> (last 100 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
 						}
 						Path path = Paths.get(logsDirectoryPath+"/"+file);
-						List<String> last100lines = Tail.tailFile(path,100);
+						List<String> last100lines = Tail.tailFile(path,150);
 						
 						if(invertBlock!=null){
 							Collections.reverse(last100lines);

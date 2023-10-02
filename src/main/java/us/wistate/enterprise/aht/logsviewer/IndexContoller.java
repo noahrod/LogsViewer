@@ -70,6 +70,7 @@ public class IndexContoller {
 				}
 			}
 			if((folder =="" || folder == null)&&(file != "") ) {
+				String fileB64 = file;
 				file = new String(Base64.getDecoder().decode(file), StandardCharsets.UTF_8);
 				File f = new File(logsDirectoryPath+"/"+file);
 				if(f.exists() && !f.isDirectory()) { 
@@ -78,9 +79,9 @@ public class IndexContoller {
 						String encodedFile = Base64.getEncoder().encodeToString((file).getBytes());
 						indexHTML.append("<br><a href=\""+context.getContextPath()+"/?folder="+encodedFolder+"\"><i class=\"bi bi-arrow-left-circle-fill\"></i> More Logs</a><br><br>");
 						if(invertBlock==null){
-							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"&invertBlock=reverse\"><i class=\"bi bi-arrow-down-up\"></i></a> <a href=\""+context.getContextPath()+"/download/file/?fileName="+fileB64+"\"><i class=\"bi bi-cloud-download-fill\"></i></a><br><br>");
 						}else{
-							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a><br><br>");
+							indexHTML.append("File: <b>"+file+"</b> (last 150 lines) <a href=\""+context.getContextPath()+"/?file="+encodedFile+"\"><i class=\"bi bi-arrow-down-up\"></i></a> <a href=\""+context.getContextPath()+"/download/file/?fileName="+fileB64+"\"><i class=\"bi bi-cloud-download-fill\"></i></a><br><br>");
 						}
 						Path path = Paths.get(logsDirectoryPath+"/"+file);
 						List<String> last100lines = Tail.tailFile(path,150);
